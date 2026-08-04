@@ -1,0 +1,18 @@
+# Neovim writes this into the cwd when it can't reach its normal state dir
+nvim.log
+
+# luacheck's on-disk cache (enabled via cache = true in .luacheckrc)
+.luacheckcache
+
+# Claude Code local state
+.claude/.cc-writes/
+.claude/settings.local.json
+
+# Editor / OS noise
+*.swp
+*.swo
+.DS_Store
+
+# Note: lazy-lock.json is intentionally NOT ignored. It pins every plugin to a
+# known-good commit, which is what makes this config reproducible on a new
+# machine via :Lazy restore.
