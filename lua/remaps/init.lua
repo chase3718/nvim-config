@@ -55,6 +55,7 @@ vim.keymap.set({ "n", "i" }, "<C-s>", function()
         markdown = true,
         graphql = true,
         handlebars = true,
+        --lua = true,
     }
 
     local prettier_cmd = prettier_filetypes[filetype] and resolve_prettier(filepath) or nil
