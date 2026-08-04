@@ -86,6 +86,11 @@ return {
                     if opts.folds.enable ~= false then
                         vim.opt_local.foldmethod = "expr"
                         vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+                        -- Keep folds open when opening a file (99 prevents auto-collapsing everything)
+                        vim.opt.foldlevel = 99
+                        vim.opt.foldlevelstart = 99
+                        vim.opt.foldenable = true
                     end
                 end,
             })

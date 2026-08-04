@@ -202,3 +202,8 @@ vim.keymap.set({ "n", "i" }, "<C-s>", function()
 end, { desc = "Format and save" })
 
 vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode" })
+
+-- Paste  without replacing register
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+vim.keymap.set("n", "Q", "<nop>")
