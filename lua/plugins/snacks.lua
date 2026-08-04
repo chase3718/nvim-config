@@ -23,7 +23,6 @@ return {
 			hidden = true,
 			sources = {
 				explorer = {
-					focus = "input",
 					auto_close = true,
 				},
 			},
