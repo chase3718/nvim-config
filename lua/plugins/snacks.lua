@@ -18,7 +18,16 @@ return {
             enabled = true,
             timeout = 3000,
         },
-        picker = { enabled = true, hidden = true },
+        picker = {
+            enabled = true,
+            hidden = true,
+            sources = {
+                explorer = {
+                    focus = "input",
+                    auto_close = true,
+                },
+            },
+        },
         profiler = { enabled = true },
         quickfile = { enabled = true },
         scope = { enabled = true },
