@@ -15,7 +15,7 @@ return {
             -- ruff rather than pylint: pylint's mason package needs python >= 3.10
             -- and this machine only has the system 3.9. ruff ships as a standalone
             -- binary, so it has no interpreter requirement.
-            local ensure_installed = { "ruff", "eslint_d", "markdownlint" }
+            local ensure_installed = { "ruff", "eslint_d", "markdownlint", "prettier", "stylua" }
             local registry = require("mason-registry")
             registry.refresh(function()
                 for _, name in ipairs(ensure_installed) do
@@ -42,6 +42,8 @@ return {
             -- than in the nvim-cmp spec (which only loads on InsertEnter).
             vim.lsp.config("*", {
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
+
+                position_encoding = "utf-8",
             })
 
             -- Per-server overrides. These are merged on top of the defaults that
