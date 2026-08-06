@@ -1,38 +1,44 @@
 return {
-	"mfussenegger/nvim-lint",
-	event = {
-		"BufReadPre",
-		"BufNewFile",
-	},
-	config = function()
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
 		local lint = require("lint")
-		lint.linters_by_ft = {
-			markdown = { "markdownlint" },
-			quarto = { "markdownlint" },
-			javascript = { "eslint_d" },
-			typescript = { "eslint_d" },
-			python = { "ruff" },
-			lua = { "luacheck" },
-		}
 
-		-- Overriding args replaces nvim-lint's defaults entirely, so --stdin has
-		-- to be kept: without it markdownlint gets no input, prints its usage
-		-- text and reports nothing. --fix is dropped because it cannot apply to
-		-- stdin, and rewriting files behind the buffer's back is unsafe anyway.
-		lint.linters.markdownlint.args = {
-			"--stdin",
-			"--disable",
-			"MD013",
-			"--",
+		lint.linters_by_ft = {
+			javascript = { "eslint_d" },
+			javascriptreact = { "eslint_d" },
+			typescript = { "eslint_d" },
+			typescriptreact = { "eslint_d" },
+
+			python = { "ruff" },
+			go = { "golangcilint" },
+			lua = { "luacheck" },
+
+			sh = { "shellcheck" },
+			bash = { "shellcheck" },
+			zsh = { "shellcheck" },
+
+			yaml = { "yamllint" },
+			dockerfile = { "hadolint" },
+			markdown = { "markdownlint" },
+
+			json = {},
+			rust = {},
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
-		vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "TextChanged" }, {
+		vim.api.nvim_create_autocmd({
+			"BufEnter",
+			"BufWritePost",
+			"InsertLeave",
+		}, {
 			group = lint_augroup,
 			callback = function()
-				lint.try_lint()
+			lint.try_lint()
 			end,
 		})
-	end,
+		end,
+	},
 }

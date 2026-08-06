@@ -1,21 +1,19 @@
--- nvim v0.8.0
 return {
-    "kdheepak/lazygit.nvim",
-    lazy = true,
-    cmd = {
-        "LazyGit",
-        "LazyGitConfig",
-        "LazyGitCurrentFile",
-        "LazyGitFilter",
-        "LazyGitFilterCurrentFile",
-    },
-    -- optional for floating window border decoration
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-    },
-    -- setting the keybinding for LazyGit with 'keys' is recommended in
-    -- order to load the plugin when the command is run for the first time
-    keys = {
-        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    }
+	{
+		"kdheepak/lazygit.nvim",
+		cmd = { "LazyGit", "LazyGitCurrentFile", "LazyGitFilter", "LazyGitFilterCurrentFile" },
+		keys = {
+			{ "<leader>gg", "<cmd>LazyGit<CR>", desc = "Open LazyGit" },
+			{ "<leader>gf", "<cmd>LazyGitCurrentFile<CR>", desc = "Current file" },
+			{ "<leader>gh", "<cmd>LazyGitFilterCurrentFile<CR>", desc = "History of current file" },
+			{ "<leader>gH", "<cmd>LazyGitFilter<CR>", desc = "Current branch history" },
+		},
+		init = function()
+		vim.g.lazygit_floating_window_border_chars = {
+			"╭", "─", "╮", "│", "╯", "─", "╰", "│",
+		}
+		vim.g.lazygit_floating_window_use_plenary = 0
+		vim.g.lazygit_use_neovim_remote = 0
+		end,
+	},
 }
