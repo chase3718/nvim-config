@@ -4,10 +4,12 @@ return {
 		event = "BufWritePre",
 		cmd = { "ConformInfo" },
 		keys = {
-			{ "<C-s>", function()
-				local mode = vim.api.nvim_get_mode().mode
-				if mode:sub(1, 1) == "i" then
-					vim.cmd.stopinsert()
+			{
+				"<C-s>",
+				function()
+					local mode = vim.api.nvim_get_mode().mode
+					if mode:sub(1, 1) == "i" then
+						vim.cmd.stopinsert()
 					end
 					require("conform").format({
 						lsp_format = "fallback",
@@ -15,7 +17,10 @@ return {
 						timeout_ms = 3000,
 					})
 					vim.cmd.write()
-					end, mode = { "n", "i", "v" }, desc = "Format and save" },
+				end,
+				mode = { "n", "i", "v" },
+				desc = "Format and save",
+			},
 		},
 		opts = {
 			formatters_by_ft = {
@@ -40,12 +45,12 @@ return {
 				zsh = { "shfmt" },
 			},
 			format_on_save = false,
-				notify_on_error = true,
-				formatters = {
-					prettier = {
-						prepend_args = { "--cache" },
-					},
+			notify_on_error = true,
+			formatters = {
+				prettier = {
+					prepend_args = { "--cache" },
 				},
+			},
 		},
 	},
 }

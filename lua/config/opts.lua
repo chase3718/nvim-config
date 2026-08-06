@@ -50,5 +50,5 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.mouse = "a"
 
 -- Disable netrw (must be before plugins are loaded)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1

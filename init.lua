@@ -16,6 +16,13 @@ vim.loader.enable()
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- Disable Neovim's built-in directory browser
+vim.g.loaded_nvim_dir_plugin = 1
+
 -- Load config modules
 require("config.opts")
 require("config.remaps")
